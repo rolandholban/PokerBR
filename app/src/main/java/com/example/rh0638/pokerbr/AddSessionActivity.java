@@ -1,12 +1,18 @@
 package com.example.rh0638.pokerbr;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 public class AddSessionActivity extends AppCompatActivity {
 
@@ -45,6 +51,33 @@ public class AddSessionActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void onInsertSession(View view) {
+        // Get access to the EditTexts
+        EditText etDate = findViewById(R.id.etDate);
+        EditText etBigBlind = findViewById(R.id.etBigBlind);
+        EditText etStartTime = findViewById(R.id.etStartTime);
+        EditText etEndTime = findViewById(R.id.etEndTime);
+        EditText etStartChips = findViewById(R.id.etStartChips);
+        EditText etEndChips = findViewById(R.id.etEndChips);
+
+        // Open a database session
+        PokerDatabaseHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
+        SQLiteDatabase db = pokerDatabaseHelper.getWritableDatabase();
+
+        // Insert the session
+        pokerDatabaseHelper.insertSession(db,
+                etDate.getText().toString(),
+                Integer.parseInt(etBigBlind.getText().toString()),
+                etStartTime.getText().toString(),
+                etEndTime.getText().toString(),
+                Integer.parseInt(etStartChips.getText().toString()),
+                Integer.parseInt(etEndChips.getText().toString()));
+
+        // Close the connection to the dabase
+        db.close();
+        pokerDatabaseHelper.close();
     }
 
 }

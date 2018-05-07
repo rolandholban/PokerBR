@@ -31,9 +31,10 @@ public class PokerDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertSession(SQLiteDatabase db, int big_blind, String start_time, String end_time, int start_chips, int end_chips) {
+    public void insertSession(SQLiteDatabase db, String date, int big_blind, String start_time, String end_time, int start_chips, int end_chips) {
         ContentValues sessionValues = new ContentValues();
 
+        sessionValues.put("date", date);
         sessionValues.put("big_blind", big_blind);
         sessionValues.put("start_time", start_time);
         sessionValues.put("end_time", end_time);
