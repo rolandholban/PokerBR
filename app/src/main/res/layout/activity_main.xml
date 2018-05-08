@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="83dp"
-        android:text="Statistics" />
+        android:text="Overall Statistics" />
 
     <Button
         android:id="@+id/view_sessions"
@@ -24,6 +24,7 @@
         android:layout_below="@+id/statistics"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:onClick="onViewSessions"
         android:text="View Sessions" />
 
 </RelativeLayout>

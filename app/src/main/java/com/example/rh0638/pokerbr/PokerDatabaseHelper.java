@@ -2,6 +2,7 @@ package com.example.rh0638.pokerbr;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -44,4 +45,8 @@ public class PokerDatabaseHelper extends SQLiteOpenHelper {
         db.insert("Session", null, sessionValues);
     }
 
+    public Cursor getAllTuples(SQLiteDatabase db, String table_name) {
+        Cursor cursor = db.rawQuery("SELECT * FROM " + table_name, null);
+        return cursor;
+    }
 }

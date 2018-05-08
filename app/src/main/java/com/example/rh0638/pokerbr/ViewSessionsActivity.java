@@ -1,14 +1,22 @@
 package com.example.rh0638.pokerbr;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ViewSessionsActivity extends AppCompatActivity {
+
+    private SQLiteDatabase db;
+    private Cursor cursor;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,24 @@ public class ViewSessionsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        PokerDatabaseHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
+
+        try {
+            // Open a connection to the database
+            db = pokerDatabaseHelper.getReadableDatabase();
+            // Get all tuples
+            cursor = pokerDatabaseHelper.getAllTuples(db, "Session");
+
+            if (cursor.getCount() == 0) {
+                toast = Toast.makeText(this, "No sessions in the database.", Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+        } catch (SQLException e) {
+            toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     // Add any items in the menu_main to the app bar
@@ -44,5 +70,12 @@ public class ViewSessionsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cursor.close();
+        db.close();
     }
 }
