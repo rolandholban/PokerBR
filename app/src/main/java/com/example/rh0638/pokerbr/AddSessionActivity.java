@@ -18,9 +18,6 @@ import android.widget.Toast;
 
 public class AddSessionActivity extends AppCompatActivity {
 
-    private SQLiteDatabase db;
-    private Toast toast;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +31,6 @@ public class AddSessionActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-
     }
 
     // Add any items in the menu_main to the app bar
@@ -68,10 +64,11 @@ public class AddSessionActivity extends AppCompatActivity {
         EditText etEndChips = findViewById(R.id.etEndChips);
 
         PokerDatabaseHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
+        Toast toast;
 
         try {
             // Open a database session
-            db = pokerDatabaseHelper.getWritableDatabase();
+            SQLiteDatabase db = pokerDatabaseHelper.getWritableDatabase();
 
             try {
                 // Insert the session

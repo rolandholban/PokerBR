@@ -16,7 +16,6 @@ public class ViewSessionsActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
     private Cursor cursor;
-    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class ViewSessionsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         PokerDatabaseHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
+        Toast toast;
 
         try {
             // Open a connection to the database
