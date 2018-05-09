@@ -26,9 +26,15 @@
             android:parentActivityName=".MainActivity">
         </activity>
 
-        <activity android:name=".ViewSessionsActivity"
+        <activity
+            android:name=".ViewSessionsActivity"
             android:label="Sessions"
             android:parentActivityName=".MainActivity">
+        </activity>
+
+        <activity android:name=".SessionDetailActivity"
+            android:label="Session Details"
+            android:parentActivityName=".ViewSessionsActivity">
         </activity>
 
     </application>

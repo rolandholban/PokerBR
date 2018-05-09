@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class ViewSessionsActivity extends AppCompatActivity {
@@ -32,6 +36,7 @@ public class ViewSessionsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         PokerDatabaseHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
+        ListView listSessions = (ListView) findViewById(R.id.list_sessions);
         Toast toast;
 
         try {
@@ -43,12 +48,37 @@ public class ViewSessionsActivity extends AppCompatActivity {
             if (cursor.getCount() == 0) {
                 toast = Toast.makeText(this, "No sessions in the database.", Toast.LENGTH_LONG);
                 toast.show();
+            } else {
+                SimpleCursorAdapter listAdapter = new SimpleCursorAdapter(this,
+                        android.R.layout.simple_list_item_1,
+                        cursor,
+                        new String[]{"_id"},
+                        new int[]{android.R.id.text1},
+                        0);
+                listSessions.setAdapter(listAdapter);
             }
-
         } catch (SQLException e) {
             toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
+
+//        // Create the listener
+//        AdapterView.OnItemClickListener itemClickListener =
+//                new AdapterView.OnItemClickListener(){
+//                    @Override
+//                    public void onItemClick(AdapterView<?> listContacts,
+//                                            View itemView,
+//                                            int position,
+//                                            long id) {
+//                        Intent intent = new Intent(ViewSessionsActivity.this,
+//                                SessionDetailActivity.class);
+//                        intent.putExtra(SessionDetailActivity.EXTRA_CONTACTID, (int) id);
+//                        startActivity(intent);
+//                    }
+//                };
+//
+//        // Assign the listener to the list view
+//        listSessions.setOnItemClickListener(itemClickListener);
     }
 
     // Add any items in the menu_main to the app bar
