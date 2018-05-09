@@ -49,13 +49,10 @@ public class ViewSessionsActivity extends AppCompatActivity {
                 toast = Toast.makeText(this, "No sessions in the database.", Toast.LENGTH_LONG);
                 toast.show();
             } else {
-                SimpleCursorAdapter listAdapter = new SimpleCursorAdapter(this,
-                        android.R.layout.simple_list_item_1,
-                        cursor,
-                        new String[]{"_id"},
-                        new int[]{android.R.id.text1},
-                        0);
-                listSessions.setAdapter(listAdapter);
+                // Setup cursor adapter using cursor from last step
+                TableCursorAdapter cursorAdapter = new TableCursorAdapter(this, cursor);
+                // Attach cursor adapter to the ListView
+                listSessions.setAdapter(cursorAdapter);
             }
         } catch (SQLException e) {
             toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);

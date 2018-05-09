@@ -18,26 +18,6 @@ public class MainActivity extends AppCompatActivity {
         // Set the toolbar as the action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        PokerDatabaseHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
-//
-//        SQLiteDatabase db = pokerDatabaseHelper.getWritableDatabase();
-//        pokerDatabaseHelper.insertSession(db, 2, "16:00", "20:00", 300, 421);
-//        pokerDatabaseHelper.insertSession(db, 2, "22:00", "01:00", 300, 421);
-//        db.close();
-//
-//        SQLiteDatabase db2 = pokerDatabaseHelper.getReadableDatabase();
-//        Cursor cursor = db2.query("Session", new String[] {"start_time", "end_time"}, null, null, null, null, null);
-//        cursor.moveToLast();
-//
-//
-//        LocalTime startTime = LocalTime.parse(cursor.getString(0));
-//        LocalTime endTime = LocalTime.parse(cursor.getString(1));
-//
-//        System.out.println("");
-//        System.out.println("PRINTING DEBUGGING INFO");
-//        System.out.println(endTime.getHour() - startTime.getHour());
-//        System.out.println("");
     }
 
     // Add any items in the menu_main to the app bar
