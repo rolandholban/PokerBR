@@ -54,28 +54,30 @@ public class ViewSessionsActivity extends AppCompatActivity {
                 // Attach cursor adapter to the ListView
                 listSessions.setAdapter(cursorAdapter);
             }
+            cursor.close();
+            db.close();
         } catch (SQLException e) {
             toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
 
-//        // Create the listener
-//        AdapterView.OnItemClickListener itemClickListener =
-//                new AdapterView.OnItemClickListener(){
-//                    @Override
-//                    public void onItemClick(AdapterView<?> listContacts,
-//                                            View itemView,
-//                                            int position,
-//                                            long id) {
-//                        Intent intent = new Intent(ViewSessionsActivity.this,
-//                                SessionDetailActivity.class);
-//                        intent.putExtra(SessionDetailActivity.EXTRA_CONTACTID, (int) id);
-//                        startActivity(intent);
-//                    }
-//                };
-//
-//        // Assign the listener to the list view
-//        listSessions.setOnItemClickListener(itemClickListener);
+        // Create the listener
+        AdapterView.OnItemClickListener itemClickListener =
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> listSessions,
+                                            View itemView,
+                                            int position,
+                                            long id) {
+                        Intent intent = new Intent(ViewSessionsActivity.this,
+                                SessionDetailActivity.class);
+                        intent.putExtra("EXTRA_SESSION_ID", (int) id);
+                        startActivity(intent);
+                    }
+                };
+
+        // Assign the listener to the list view
+        listSessions.setOnItemClickListener(itemClickListener);
     }
 
     // Add any items in the menu_main to the app bar
@@ -102,7 +104,5 @@ public class ViewSessionsActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        cursor.close();
-        db.close();
     }
 }
