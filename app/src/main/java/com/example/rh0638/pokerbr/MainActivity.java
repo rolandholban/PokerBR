@@ -41,8 +41,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onViewSessions(View view) {
+    public void onClickViewSessions(View view) {
         Intent intent = new Intent(this, ViewSessionsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickViewStatistics(View view) {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickAddSession(View view) {
+        Intent intent = new Intent(this, AddSessionActivity.class);
         startActivity(intent);
     }
 }

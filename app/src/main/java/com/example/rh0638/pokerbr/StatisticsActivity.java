@@ -1,6 +1,5 @@
 package com.example.rh0638.pokerbr;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,13 +18,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SessionDetailActivity extends AppCompatActivity {
+public class StatisticsActivity extends AppCompatActivity {
 
-    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_session_detail);
+        setContentView(R.layout.activity_statistics);
 
         // Set the toolbar as the action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -36,71 +34,59 @@ public class SessionDetailActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // Create a cursor
         SQLiteOpenHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
-        int sessionId = (int) getIntent().getExtras().get("EXTRA_SESSION_ID");
+
+        // Find fields to populate
+        TextView tvTotatlProfit = (TextView) findViewById(R.id.tvTotalProfit);
+        TextView tvTotalTime = (TextView) findViewById(R.id.tvTotalTime);
+        TextView tvROI = (TextView) findViewById(R.id.tvROI);
+        TextView tvMoneyPerHour = (TextView) findViewById(R.id.tvMoneyPerHour);
+
+        double totalProfit = 0, totalTime = 0, roi = 0, moneyPerHour = 0, totalInvested = 0;
 
         try {
             SQLiteDatabase db = pokerDatabaseHelper.getReadableDatabase();
-            Cursor cursor = db.rawQuery("SELECT * FROM Session WHERE _id =" + String.valueOf(sessionId), null);
+            Cursor cursor = db.rawQuery("SELECT * FROM Session", null);
 
-            if (cursor.moveToFirst()) {
-                // Find fields to populate in inflated template
-                TextView tvSessionId = (TextView)findViewById(R.id.tvSessionId);
-                TextView tvDate = (TextView)findViewById(R.id.tvTotalTime);
-                TextView tvBigBlind = (TextView)findViewById(R.id.tvBigBlind);
-                TextView tvStartTime = (TextView)findViewById(R.id.tvStartTime);
-                TextView tvEndTime = (TextView)findViewById(R.id.tvEndTime);
-                TextView tvStartChips = (TextView)findViewById(R.id.tvStartChips);
-                TextView tvEndChips = (TextView)findViewById(R.id.tvEndChips);
-                TextView tvProfit = (TextView)findViewById(R.id.tvTotalProfit);
-                TextView tvLength = (TextView)findViewById(R.id.tvLength);
-                TextView tvROI = (TextView)findViewById(R.id.tvROI);
-                TextView tvMoneyPerHour = (TextView)findViewById(R.id.tvMoneyPerHour);
+            while (cursor.moveToNext()) {
 
                 // Extract properties from cursor
-                int id = cursor.getInt(0);
-                String date = cursor.getString(1);
-                int bigBlind = cursor.getInt(2);
                 String startTime = cursor.getString(3);
                 String endTime = cursor.getString(4);
                 int startChips = cursor.getInt(5);
                 int endChips = cursor.getInt(6);
-                int profit = endChips - startChips;
 
                 SimpleDateFormat format = new SimpleDateFormat("hh:mm");
                 Date date1 = format.parse(startTime);
                 Date date2 = format.parse(endTime);
                 Date date3 = new Date(date2.getTime() - date1.getTime());
-                double length = ((double) date3.getTime() / 1000 / 3600) % 24 ;
 
-                double roi = (double) profit / (double) startChips * 100;
-                double moneyPerHour = profit / length;
+                double sessLength = ((double) date3.getTime() / 1000 / 3600) % 24;
+                double sessProfit = endChips - startChips;
 
-                // Populate fields with extracted properties and calculations
-                tvSessionId.setText(String.valueOf(id));
-                tvDate.setText(date);
-                tvBigBlind.setText("$ " + String.valueOf(bigBlind));
-                tvStartTime.setText(startTime);
-                tvEndTime.setText(endTime);
-                tvStartChips.setText("$ " + String.valueOf(startChips));
-                tvEndChips.setText("$ " + String.valueOf(endChips));
-                tvProfit.setText("$ " + String.valueOf(profit));
-                tvLength.setText(String.format("%.2f", length) + " hrs");
-                tvROI.setText(String.valueOf(roi) + "%");
-                tvMoneyPerHour.setText("$ " + String.format("%.2f", moneyPerHour));
+                totalProfit += sessProfit;
+                totalTime += sessLength;
+                totalInvested += startChips;
             }
+
+            roi = totalProfit / totalInvested * 100;
+            moneyPerHour = totalProfit / totalTime;
+
+            // Populate fields with extracted properties and calculations
+            tvTotatlProfit.setText("$ " + String.valueOf(totalProfit));
+            tvTotalTime.setText(String.format("%.2f", totalTime) + " hrs");
+            tvROI.setText(String.valueOf(roi) + "%");
+            tvMoneyPerHour.setText("$ " + String.format("%.2f", moneyPerHour));
 
             cursor.close();
             db.close();
-        } catch(SQLiteException e) {
+        } catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
-        } catch(ParseException ex) {
+        } catch (ParseException ex) {
             Toast toast = Toast.makeText(this, "parse error", Toast.LENGTH_SHORT);
             toast.show();
         }
-
     }
 
     // Add any items in the menu_main to the app bar

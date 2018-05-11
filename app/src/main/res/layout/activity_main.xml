@@ -12,10 +12,11 @@
         android:id="@+id/statistics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="83dp"
-        android:text="Overall Statistics" />
+        android:layout_marginTop="30dp"
+        android:onClick="onClickViewStatistics"
+        android:text="View Statistics" />
 
     <Button
         android:id="@+id/view_sessions"
@@ -23,8 +24,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/statistics"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:onClick="onViewSessions"
+        android:layout_marginTop="20dp"
+        android:onClick="onClickViewSessions"
         android:text="View Sessions" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_sessions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="onClickAddSession"
+        android:text="Add Session" />
 
 </RelativeLayout>

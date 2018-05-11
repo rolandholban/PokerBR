@@ -19,11 +19,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="Session #:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -31,11 +30,10 @@
             android:layout_marginStart="10dp"
             android:layout_row="1"
             android:text="Date:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -43,11 +41,10 @@
             android:layout_marginStart="10dp"
             android:layout_row="2"
             android:text="Big Blind:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -55,11 +52,10 @@
             android:layout_marginStart="10dp"
             android:layout_row="3"
             android:text="Start Time:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -67,11 +63,10 @@
             android:layout_marginStart="10dp"
             android:layout_row="4"
             android:text="End Time:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -79,11 +74,10 @@
             android:layout_marginStart="10dp"
             android:layout_row="5"
             android:text="Start Chips:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -91,7 +85,7 @@
             android:layout_marginStart="10dp"
             android:layout_row="6"
             android:text="End Chips:"
-            android:textSize="14sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
@@ -100,22 +94,22 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:layout_row="0"
             android:text="4"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
-            android:id="@+id/tvDate"
+            android:id="@+id/tvTotalTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="1"
             android:text="12/12/2015"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/tvBigBlind"
@@ -123,10 +117,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="2"
             android:text="$2"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/tvStartTime"
@@ -134,10 +128,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="3"
             android:text="12:30"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/tvEndTime"
@@ -145,10 +139,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="4"
             android:text="16:30"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/tvStartChips"
@@ -156,10 +150,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="5"
             android:text="$300"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/tvEndChips"
@@ -167,33 +161,30 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="6"
             android:text="$600"
-            android:textSize="14sp" />
+            android:textSize="21sp" />
 
         <TextView
-            android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"
             android:layout_row="7"
-            android:text="-----------------" />
+            android:text="--------------------------" />
 
         <TextView
-            android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="7"
-            android:text="----------" />
+            android:text="---------------" />
 
         <TextView
-            android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -201,23 +192,21 @@
             android:layout_marginStart="10dp"
             android:layout_row="8"
             android:text="Profit:"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"
             android:layout_row="9"
-            android:text="Session Length:"
-            android:textSize="18sp"
+            android:text="Length:"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -225,11 +214,10 @@
             android:layout_marginStart="10dp"
             android:layout_row="10"
             android:text="ROI:"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -237,19 +225,19 @@
             android:layout_marginStart="10dp"
             android:layout_row="11"
             android:text="$/Hour:"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvProfit"
+            android:id="@+id/tvTotalProfit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="8"
             android:text="$455"
-            android:textSize="18sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tvLength"
@@ -257,10 +245,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="9"
             android:text="4:30"
-            android:textSize="18sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tvROI"
@@ -268,10 +256,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="10"
             android:text="217%"
-            android:textSize="18sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tvMoneyPerHour"
@@ -279,10 +267,10 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="30dp"
             android:layout_row="11"
             android:text="$117"
-            android:textSize="18sp" />
+            android:textSize="30sp" />
 
     </GridLayout>
 

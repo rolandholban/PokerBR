@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 public class ViewSessionsActivity extends AppCompatActivity {
@@ -54,8 +53,6 @@ public class ViewSessionsActivity extends AppCompatActivity {
                 // Attach cursor adapter to the ListView
                 listSessions.setAdapter(cursorAdapter);
             }
-            cursor.close();
-            db.close();
         } catch (SQLException e) {
             toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
@@ -104,5 +101,7 @@ public class ViewSessionsActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        cursor.close();
+        db.close();
     }
 }

@@ -15,7 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/tvDate"
+        android:id="@+id/tvTotalTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="21dp"
-        android:layout_toEndOf="@+id/tvDate"
+        android:layout_toEndOf="@+id/tvTotalTime"
         android:text="12:15"
         android:textAlignment="viewEnd"
         android:textAppearance="?android:attr/textAppearanceMedium" />

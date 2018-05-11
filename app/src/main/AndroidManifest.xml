@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:label="Poker Bankroll">
@@ -19,22 +18,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddSessionActivity"
             android:label="Add Session"
             android:parentActivityName=".MainActivity">
-        </activity>
 
+        </activity>
         <activity
             android:name=".ViewSessionsActivity"
             android:label="Sessions"
             android:parentActivityName=".MainActivity">
-        </activity>
 
-        <activity android:name=".SessionDetailActivity"
+        </activity>
+        <activity
+            android:name=".SessionDetailActivity"
             android:label="Session Details"
             android:parentActivityName=".ViewSessionsActivity">
+
+        </activity>
+        <activity
+            android:name=".StatisticsActivity"
+            android:label="Overall Statistics"
+            android:parentActivityName=".MainActivity">
         </activity>
 
     </application>

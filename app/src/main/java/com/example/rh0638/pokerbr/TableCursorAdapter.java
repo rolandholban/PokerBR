@@ -26,7 +26,7 @@ public class TableCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflated template
         TextView tvId = (TextView) view.findViewById(R.id.tvId);
-        TextView tvDate = (TextView) view.findViewById(R.id.tvDate);
+        TextView tvDate = (TextView) view.findViewById(R.id.tvTotalTime);
         TextView tvStartTime = (TextView) view.findViewById(R.id.tvStartTime);
         TextView tvEndTime = (TextView) view.findViewById(R.id.tvEndTime);
         TextView tvStartChips = (TextView) view.findViewById(R.id.tvStartChips);
