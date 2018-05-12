@@ -26,26 +26,20 @@ public class TableCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // Find fields to populate in inflated template
         TextView tvId = (TextView) view.findViewById(R.id.tvId);
-        TextView tvDate = (TextView) view.findViewById(R.id.tvTotalTime);
+        TextView tvDate = (TextView) view.findViewById(R.id.tvDate);
         TextView tvStartTime = (TextView) view.findViewById(R.id.tvStartTime);
         TextView tvEndTime = (TextView) view.findViewById(R.id.tvEndTime);
-        TextView tvStartChips = (TextView) view.findViewById(R.id.tvStartChips);
-        TextView tvEndChips = (TextView) view.findViewById(R.id.tvEndChips);
 
         // Extract properties from cursor
         int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
         String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
         String startTime = cursor.getString(cursor.getColumnIndexOrThrow("start_time"));
         String endTime = cursor.getString(cursor.getColumnIndexOrThrow("end_time"));
-        int startChips = cursor.getInt(cursor.getColumnIndexOrThrow("start_chips"));
-        int endChips = cursor.getInt(cursor.getColumnIndexOrThrow("end_chips"));
 
         // Populate fields with extracted properties
         tvId.setText(String.valueOf(id));
         tvDate.setText(date);
         tvStartTime.setText(startTime);
         tvEndTime.setText(endTime);
-        tvStartChips.setText(String.valueOf(startChips));
-        tvEndChips.setText(String.valueOf(endChips));
     }
 }

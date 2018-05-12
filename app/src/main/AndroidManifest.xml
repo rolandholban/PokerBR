@@ -40,6 +40,7 @@
             android:name=".StatisticsActivity"
             android:label="Overall Statistics"
             android:parentActivityName=".MainActivity">
+
         </activity>
 
     </application>

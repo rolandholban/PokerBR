@@ -37,12 +37,13 @@ public class StatisticsActivity extends AppCompatActivity {
         SQLiteOpenHelper pokerDatabaseHelper = new PokerDatabaseHelper(this);
 
         // Find fields to populate
-        TextView tvTotatlProfit = (TextView) findViewById(R.id.tvTotalProfit);
-        TextView tvTotalTime = (TextView) findViewById(R.id.tvTotalTime);
+        TextView tvTotalProfit = (TextView) findViewById(R.id.tvProfit);
+        TextView tvTotalTime = (TextView) findViewById(R.id.tvDate);
         TextView tvROI = (TextView) findViewById(R.id.tvROI);
         TextView tvMoneyPerHour = (TextView) findViewById(R.id.tvMoneyPerHour);
 
-        double totalProfit = 0, totalTime = 0, roi = 0, moneyPerHour = 0, totalInvested = 0;
+        double totalProfit = 0, roi = 0, moneyPerHour = 0, totalInvested = 0;
+        long totalTime = 0;
 
         try {
             SQLiteDatabase db = pokerDatabaseHelper.getReadableDatabase();
@@ -56,26 +57,27 @@ public class StatisticsActivity extends AppCompatActivity {
                 int startChips = cursor.getInt(5);
                 int endChips = cursor.getInt(6);
 
-                SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+                SimpleDateFormat format = new SimpleDateFormat("h:mm a");
                 Date date1 = format.parse(startTime);
                 Date date2 = format.parse(endTime);
-                Date date3 = new Date(date2.getTime() - date1.getTime());
+                long timeDiff = date2.getTime() - date1.getTime();
 
-                double sessLength = ((double) date3.getTime() / 1000 / 3600) % 24;
+                if (timeDiff < 0) timeDiff += (24 * 3600000);
+
                 double sessProfit = endChips - startChips;
 
                 totalProfit += sessProfit;
-                totalTime += sessLength;
+                totalTime += timeDiff;
                 totalInvested += startChips;
             }
 
             roi = totalProfit / totalInvested * 100;
-            moneyPerHour = totalProfit / totalTime;
+            moneyPerHour = totalProfit / (totalTime / 3600000);
 
             // Populate fields with extracted properties and calculations
-            tvTotatlProfit.setText("$ " + String.valueOf(totalProfit));
-            tvTotalTime.setText(String.format("%.2f", totalTime) + " hrs");
-            tvROI.setText(String.valueOf(roi) + "%");
+            tvTotalProfit.setText("$ " + String.valueOf(totalProfit));
+            tvTotalTime.setText((totalTime / 3600000) + " hr/s " + (totalTime % 3600000) / 60000 + " min");
+            tvROI.setText(String.format("%.2f", roi) + "%");
             tvMoneyPerHour.setText("$ " + String.format("%.2f", moneyPerHour));
 
             cursor.close();
@@ -84,7 +86,7 @@ public class StatisticsActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         } catch (ParseException ex) {
-            Toast toast = Toast.makeText(this, "parse error", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Parse error", Toast.LENGTH_SHORT);
             toast.show();
         }
     }

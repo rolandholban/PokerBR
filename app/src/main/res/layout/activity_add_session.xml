@@ -54,7 +54,7 @@
             android:layout_marginStart="10dp"
             android:layout_row="2"
             android:ems="10"
-            android:inputType="time" />
+            android:inputType="datetime" />
 
         <EditText
             android:id="@+id/etEndTime"
@@ -65,7 +65,7 @@
             android:layout_marginStart="10dp"
             android:layout_row="3"
             android:ems="10"
-            android:inputType="time" />
+            android:inputType="datetime" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -167,7 +167,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(hh:mm)"
+                android:text="(hh:mm am/pm)"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -190,7 +190,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(hh:mm)"
+                android:text="(hh:mm am/pm)"
                 android:textSize="12sp" />
         </LinearLayout>
 

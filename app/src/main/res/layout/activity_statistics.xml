@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvTotalProfit"
+            android:id="@+id/tvProfit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
@@ -57,7 +57,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/tvTotalTime"
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"

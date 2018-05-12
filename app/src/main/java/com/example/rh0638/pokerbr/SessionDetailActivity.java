@@ -44,16 +44,16 @@ public class SessionDetailActivity extends AppCompatActivity {
             SQLiteDatabase db = pokerDatabaseHelper.getReadableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM Session WHERE _id =" + String.valueOf(sessionId), null);
 
-            if (cursor.moveToFirst()) {
+            if (cursor.moveToNext()) {
                 // Find fields to populate in inflated template
                 TextView tvSessionId = (TextView)findViewById(R.id.tvSessionId);
-                TextView tvDate = (TextView)findViewById(R.id.tvTotalTime);
+                TextView tvDate = (TextView)findViewById(R.id.tvDate);
                 TextView tvBigBlind = (TextView)findViewById(R.id.tvBigBlind);
                 TextView tvStartTime = (TextView)findViewById(R.id.tvStartTime);
                 TextView tvEndTime = (TextView)findViewById(R.id.tvEndTime);
                 TextView tvStartChips = (TextView)findViewById(R.id.tvStartChips);
                 TextView tvEndChips = (TextView)findViewById(R.id.tvEndChips);
-                TextView tvProfit = (TextView)findViewById(R.id.tvTotalProfit);
+                TextView tvProfit = (TextView)findViewById(R.id.tvProfit);
                 TextView tvLength = (TextView)findViewById(R.id.tvLength);
                 TextView tvROI = (TextView)findViewById(R.id.tvROI);
                 TextView tvMoneyPerHour = (TextView)findViewById(R.id.tvMoneyPerHour);
@@ -66,16 +66,17 @@ public class SessionDetailActivity extends AppCompatActivity {
                 String endTime = cursor.getString(4);
                 int startChips = cursor.getInt(5);
                 int endChips = cursor.getInt(6);
-                int profit = endChips - startChips;
 
-                SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+                SimpleDateFormat format = new SimpleDateFormat("h:mm a");
                 Date date1 = format.parse(startTime);
                 Date date2 = format.parse(endTime);
-                Date date3 = new Date(date2.getTime() - date1.getTime());
-                double length = ((double) date3.getTime() / 1000 / 3600) % 24 ;
+                long timeDiff = date2.getTime() - date1.getTime();
 
+                if (timeDiff < 0) timeDiff += (24 * 3600000);
+
+                int profit = endChips - startChips;
                 double roi = (double) profit / (double) startChips * 100;
-                double moneyPerHour = profit / length;
+                double moneyPerHour = profit / (timeDiff / 3600000);
 
                 // Populate fields with extracted properties and calculations
                 tvSessionId.setText(String.valueOf(id));
@@ -86,8 +87,8 @@ public class SessionDetailActivity extends AppCompatActivity {
                 tvStartChips.setText("$ " + String.valueOf(startChips));
                 tvEndChips.setText("$ " + String.valueOf(endChips));
                 tvProfit.setText("$ " + String.valueOf(profit));
-                tvLength.setText(String.format("%.2f", length) + " hrs");
-                tvROI.setText(String.valueOf(roi) + "%");
+                tvLength.setText((timeDiff / 3600000) + " hr/s " + (timeDiff % 3600000) / 60000 + " min");
+                tvROI.setText(String.format("%.2f", roi) + "%");
                 tvMoneyPerHour.setText("$ " + String.format("%.2f", moneyPerHour));
             }
 
