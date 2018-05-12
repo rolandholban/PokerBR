@@ -76,7 +76,7 @@ public class SessionDetailActivity extends AppCompatActivity {
 
                 int profit = endChips - startChips;
                 double roi = (double) profit / (double) startChips * 100;
-                double moneyPerHour = profit / (timeDiff / 3600000);
+                double moneyPerHour = (double) profit / ((double)timeDiff / 3600000);
 
                 // Populate fields with extracted properties and calculations
                 tvSessionId.setText(String.valueOf(id));

@@ -72,7 +72,7 @@ public class StatisticsActivity extends AppCompatActivity {
             }
 
             roi = totalProfit / totalInvested * 100;
-            moneyPerHour = totalProfit / (totalTime / 3600000);
+            moneyPerHour = totalProfit / ((double) totalTime / 3600000);
 
             // Populate fields with extracted properties and calculations
             tvTotalProfit.setText("$ " + String.valueOf(totalProfit));
